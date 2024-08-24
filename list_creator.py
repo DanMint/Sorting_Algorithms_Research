@@ -34,11 +34,11 @@ class GenerateLists:
         return self.short_sorted
     
     @property
-    def get_regular_sorted(self):
+    def get_short_regular(self):
         return self.short_regular
     
     @property
-    def get_reverse_sorted(self):
+    def get_short_rsorted(self):
         return self.short_reverse
 
     def fill_middle(self):
@@ -56,11 +56,11 @@ class GenerateLists:
         return self.middle_sorted
     
     @property
-    def get_middle_sorted(self):
+    def get_middle_regular(self):
         return self.middle_regular
     
     @property
-    def get_middle_sorted(self):
+    def get_middle_rsorted(self):
         return self.middle_reverse
 
     def fill_long(self):
@@ -78,17 +78,39 @@ class GenerateLists:
         return self.long_sorted
     
     @property
-    def get_long_sorted(self):
+    def get_long_regular(self):
         return self.long_regular
     
     @property
-    def get_long_sorted(self):
+    def get_long_rsorted(self):
         return self.long_reverse
 
 
 def main():
     a = GenerateLists()
-    print(len(a.get_long_sorted[0]))
+    ss = a.get_short_sorted
+    sr = a.get_short_regular
+    su = a.get_short_rsorted
+
+    print(len(ss[0]))
+    print(len(sr[0]))
+    print(len(su[0]))
+
+    ms = a.get_middle_sorted
+    mr = a.get_middle_regular
+    mu = a.get_middle_rsorted
+
+    print(len(ms[0]))
+    print(len(mr[0]))
+    print(len(mu[0]))
+
+    ls = a.get_long_sorted
+    lr = a.get_long_regular
+    lu = a.get_long_rsorted
+
+    print(len(ls[0]))
+    print(len(lr[0]))
+    print(len(lu[0]))
 
 if __name__ == "__main__":
     main()
