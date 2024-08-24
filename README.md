@@ -5,33 +5,33 @@ In this repository I wanted to conduct reserach into sorting algorithms and thie
 
 ## <ins>Algorithms Used<ins>
 
-###<ins>Insertion Sort<ins>
+### <ins>Insertion Sort<ins>
 
-###<ins>Merge Sort<ins>
+### <ins>Merge Sort<ins>
 
-###<ins>Selection Sort<ins>
+### <ins>Selection Sort<ins>
 
-###<ins>Insertion Sort<ins>
+### <ins>Insertion Sort<ins>
 
-###<ins>Selection Sort<ins>
+### <ins>Selection Sort<ins>
 
-###<ins>Bubble sort<ins>
+### <ins>Bubble sort<ins>
 
-###<ins>Heap sortt<ins>
+### <ins>Heap sortt<ins>
 
-###<ins>Quick Sort (naive)<ins>
+### <ins>Quick Sort (naive)<ins>
 
-###<ins>Quick Sort (improvment 1)<ins>
+### <ins>Quick Sort (improvment 1)<ins>
 
-###<ins>Quick Sort (improvment 2)<ins>
+### <ins>Quick Sort (improvment 2)<ins>
 
-###<ins>Counting Sort<ins>
+### <ins>Counting Sort<ins>
 
-###<ins>Radix Sort (naive)<ins>
+### <ins>Radix Sort (naive)<ins>
 
-###<ins>Radix Sort (improved)<ins>
+### <ins>Radix Sort (improved)<ins>
 
-###<ins>Counting Sort<ins>
+### <ins>Counting Sort<ins>
 
-###<ins>Butcher Odd Even Merge Sort<ins>
+### <ins>Butcher Odd Even Merge Sort<ins>
 
