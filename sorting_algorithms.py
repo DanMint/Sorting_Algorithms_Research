@@ -4,7 +4,6 @@ class SortingAlgorithms:
     def __init__(self, data: list[int] = None) -> None:
         self.__original_data = data[:]
         self.__sorted_data = data[:].sort
-        print(self.__sorted_data)
         self.__insertion_data = data[:]
         self.__merge_data = data[:]
         self.__selection_data = data[:]         
