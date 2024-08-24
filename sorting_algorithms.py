@@ -1,13 +1,15 @@
 import sys
 
 class SortingAlgorithms:
-    def __init__(self, data: list[int]) -> None:
+    def __init__(self, data: list[int] = None) -> None:
         self.__original_data = data[:]
+        self.__sorted_data = data[:].sort
+        print(self.__sorted_data)
         self.__insertion_data = data[:]
         self.__merge_data = data[:]
-        self.__selection_data = data[:]
+        self.__selection_data = data[:]         
         self.__bubble_data = data[:]
-        self.__heap_data = data[:]
+        self.__heap_data = data[:] 
         self.__quick__naive_data = data[:]
         self.__quick_impr_1 = data[:]
         self.__quick_impr_2 = data[:]
@@ -15,6 +17,14 @@ class SortingAlgorithms:
         self.__radix_impr_data = data[:]
         self.__butcher_odd_even_merge_data = data[:]
         self.__stalin_data = data[:]
+
+    @property
+    def raw_data(self):
+        return self.__original_data
+
+    @property
+    def sorted_data(self):
+        return self.__sorted_data
 
     def __insertion_sort__(self):
         # start time (for algo speed)
@@ -28,6 +38,10 @@ class SortingAlgorithms:
 
             self.__insertion_data[j + 1] = key
         # end time 
+
+    @property
+    def insertion_sort(self):
+        return self.__insertion_data
 
     def __merge_sort__(self, p, r):
         # start time
@@ -65,17 +79,25 @@ class SortingAlgorithms:
                 self.__merge_data[k] = R[j]
                 j += 1
 
+
+    @property
+    def merge_sort(self):
+        return self.__merge_data
+
     def __selection_sort__(self):
         # start time
-        for i in self.__selection_datange(len(self.__selection_data)):
+        for i in range(len(self.__selection_data)):
             lowest = i
-            for j in self.__selection_datange(i, len(self.__selection_data)):
+            for j in range(i, len(self.__selection_data)):
                 if self.__selection_data[lowest] > self.__selection_data[j]:
                     lowest = j
                     
             self.__selection_data[i], self.__selection_data[lowest] = self.__selection_data[lowest], self.__selection_data[i]
         # end time
 
+    @property
+    def selection_sort(self):
+        return self.__selection_data
 
     def __bubble_sort__(self):
         # start time
@@ -84,6 +106,10 @@ class SortingAlgorithms:
                 if self.__bubble_data[j] > self.__bubble_data[j + 1]:
                     self.__bubble_data[j], self.__bubble_data[j + 1] = self.__bubble_data[j + 1], self.__bubble_data[j]
         # end time
+
+    @property
+    def bubble_sort(self):
+        return self.__bubble_data
 
     def __heap_sort__(self):
         self.__build_max_heap__()
@@ -108,6 +134,10 @@ class SortingAlgorithms:
 
         self.__quick__naive_data[i + 1], self.__quick__naive_data[r] = self.__quick__naive_data[r], self.__quick__naive_data[i + 1]
         return i + 1
+
+    @property
+    def quick_sort_naive(self):
+        return self.__quick__naive_data
 
     def __quick_sort_improved_1__(self, p, r):
         # start time
@@ -134,6 +164,10 @@ class SortingAlgorithms:
         self.__quick_impr_1[r], self.__quick_impr_1[left] = self.__quick_impr_1[left], self.__quick_impr_1[r]
         return left
     
+    @property
+    def quick_sort_imrproved_1(self):
+        return self.__quick_impr_1
+
     def __quick_sort_improved_2__(self, p, r):
         # start time
         if p < r:
@@ -163,6 +197,10 @@ class SortingAlgorithms:
 
         self.__quick_impr_2[r], self.__quick_impr_2[left] = self.__quick_impr_2[left], self.__quick_impr_2[r]
         return left
+
+    @property
+    def quick_sort_improved_2(self):
+        return self.__quick_impr_2
 
     # does not sort neagtive numbers
     def __radix_naive_sort__(self):
@@ -230,6 +268,10 @@ class SortingAlgorithms:
 
         for i in range(n):
             arr[i] = output[i]
+
+    @property
+    def radix_sort(self):
+        self.__radix_impr_data
         
     def __butcher_odd_even_merge_sort__(self):
         p = 1
@@ -244,6 +286,10 @@ class SortingAlgorithms:
                 k = k // 2
             p = p * 2
 
+    @property
+    def butcher_odd_even_merge_sort(self):
+        return self.__butcher_odd_even_merge_data
+
     def __stalin_sort__(self):
         max = -123456789
         for value in self.__stalin_data:
@@ -252,8 +298,30 @@ class SortingAlgorithms:
             else:
                 max = value
 
+    def run(self) -> None:
+        try:
+            assert self.__original_data != None , "Cant sort because array is empty"
+
+        except AssertionError as e:
+            print(e)
+            return()
+
+        self.__insertion_sort__()
+        self.__merge_sort__(0, len(self.__original_data) - 1)
+        # self.__heap_sort()
+        self.__selection_sort__()
+        self.__bubble_sort__()
+        self.__quick_sort_naive__(0, len(self.__original_data) - 1)
+        self.__quick_sort_improved_1__(0, len(self.__original_data) - 1)
+        self.__quick_sort_improved_2__(0, len(self.__original_data) - 1)
+        self.__radix_improved_sort__()
+        # self.__count_sort__()
+        self.__butcher_odd_even_merge_sort__()
+
+        
+
 def main():
-    print(sys.maxsize)
+    pass
 
 if __name__ == "__main__":
     main()
