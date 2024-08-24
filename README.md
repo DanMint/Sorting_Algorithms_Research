@@ -5,6 +5,8 @@ In this repository I wanted to conduct reserach into sorting algorithms and thie
 
 ## <ins>Algorithms Used<ins>
 
+![Insertion Sort demo](gifs/insertion_sort_animation.gif)
+
 ### <ins>Insertion Sort<ins>
 
 ### <ins>Merge Sort<ins>
