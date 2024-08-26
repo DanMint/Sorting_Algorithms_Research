@@ -100,11 +100,13 @@ class SortingAlgorithms:
 
     def __bubble_sort__(self):
         # start time
-        for i in range(len(self.__bubble_data)):
-            for j in range(i, len(self.__bubble_data) - 1):
+        n = len(self.__bubble_data)
+        for i in range(n):
+            for j in range(0, n - 1 - i):
                 if self.__bubble_data[j] > self.__bubble_data[j + 1]:
                     self.__bubble_data[j], self.__bubble_data[j + 1] = self.__bubble_data[j + 1], self.__bubble_data[j]
         # end time
+
 
     @property
     def bubble_sort(self):
@@ -139,63 +141,69 @@ class SortingAlgorithms:
         return self.__quick__naive_data
 
     def __quick_sort_improved_1__(self, p, r):
-        # start time
         if p < r:
             q = self.__partion_improved_1__(p, r)
             self.__quick_sort_improved_1__(p, q - 1)
             self.__quick_sort_improved_1__(q + 1, r)
-        # end time
 
     def __partion_improved_1__(self, p, r):
-        x = self.__quick__naive_data[r]
+        x = self.__quick_impr_1[r]  
         left = p
         right = r - 1
-        while right > left:
-            while self.__quick_impr_1[left] < x:
+        while True:
+            while left <= right and self.__quick_impr_1[left] < x:
                 left += 1
-            while self.__quick_impr_1[right] > x  and right > 0:
-                right -= 1 
-            if left < right:
+            while right >= left and self.__quick_impr_1[right] > x:
+                right -= 1
+            if left >= right:
+                break
+            else:
                 self.__quick_impr_1[left], self.__quick_impr_1[right] = self.__quick_impr_1[right], self.__quick_impr_1[left]
                 left += 1
                 right -= 1
-
-        self.__quick_impr_1[r], self.__quick_impr_1[left] = self.__quick_impr_1[left], self.__quick_impr_1[r]
+        
+        self.__quick_impr_1[left], self.__quick_impr_1[r] = self.__quick_impr_1[r], self.__quick_impr_1[left]
         return left
+
     
     @property
     def quick_sort_imrproved_1(self):
         return self.__quick_impr_1
 
     def __quick_sort_improved_2__(self, p, r):
-        # start time
         if p < r:
             q = self.__partion_improved_2__(p, r)
             self.__quick_sort_improved_2__(p, q - 1)
             self.__quick_sort_improved_2__(q + 1, r)
-        # end time
 
     def __partion_improved_2__(self, p, r):
-        median_of_three = [self.__quick_impr_2[0], self.__quick_impr_2[len(self.__quick_impr_2) // 2 - 1], self.__quick_impr_2[len(self.__quick_impr_2) - 1]]
-        self.__quick_impr_2[0], self.__quick_impr_2[(len(self.__quick_impr_2) // 2) - 1], self.__quick_impr_2[len(self.__quick_impr_2) - 1] = None, None, None
-        median_of_three.sort()
-        self.__quick_impr_2[0], self.__quick_impr_2[len(self.__quick_impr_2) - 1] = median_of_three[0], median_of_three[2]
-        self.__quick_impr_2[(len(self.__quick_impr_2) // 2) - 1], self.__quick_impr_2[len(self.__quick_impr_2) - 2] = self.__quick_impr_2[len(self.__quick_impr_2) - 2], median_of_three[1]
-        x = median_of_three[1]
-        left = p + 1
-        right = r - 2
-        while right > left:
-            while self.__quick_impr_2[left] < x:
+        mid = (p + r) // 2
+        median_of_three = sorted([(self.__quick_impr_2[p], p), (self.__quick_impr_2[mid], mid), (self.__quick_impr_2[r], r)])
+        pivot_value, pivot_index = median_of_three[1]
+
+        # Move the pivot to the start
+        self.__quick_impr_2[pivot_index], self.__quick_impr_2[r] = self.__quick_impr_2[r], pivot_value
+        pivot = self.__quick_impr_2[r]
+
+        left = p
+        right = r - 1
+
+        while True:
+            while left <= right and self.__quick_impr_2[left] < pivot:
                 left += 1
-            while self.__quick_impr_2[right] > x  and right > 0:
-                right -= 1 
-            if left < right:
+            while left <= right and self.__quick_impr_2[right] > pivot:
+                right -= 1
+            if left >= right:
+                break
+            else:
                 self.__quick_impr_2[left], self.__quick_impr_2[right] = self.__quick_impr_2[right], self.__quick_impr_2[left]
                 left += 1
                 right -= 1
 
-        self.__quick_impr_2[r], self.__quick_impr_2[left] = self.__quick_impr_2[left], self.__quick_impr_2[r]
+        self.__quick_impr_2[left], self.__quick_impr_2[r] = self.__quick_impr_2[r], self.__quick_impr_2[left]
+
         return left
+
 
     @property
     def quick_sort_improved_2(self):
@@ -241,18 +249,17 @@ class SortingAlgorithms:
 
         self.__radix_impr_data[:] = [-x for x in reversed(neg)] + pos
 
-
     def __radix_sort_pos__(self, arr):
         n = len(arr)
         max_val = max(arr)
 
         pos = 1
         while max_val // pos > 0:
-            self.__count_sort__(arr, n, pos)
+            self.__count_sort_impr__(arr, n, pos)
             pos *= 10
 
-    def __count_sort__(self, arr, n, pos):
-        output = [0] * len(arr)
+    def __count_sort_impr__(self, arr, n, pos):
+        output = [0] * n
         count = [0] * 10
 
         for i in range(n):
@@ -268,22 +275,25 @@ class SortingAlgorithms:
         for i in range(n):
             arr[i] = output[i]
 
+
     @property
     def radix_sort(self):
-        self.__radix_impr_data
+        return self.__radix_impr_data
         
     def __butcher_odd_even_merge_sort__(self):
+        n = len(self.__butcher_odd_even_merge_data)
+        
         p = 1
-        while p < len(self.__butcher_odd_even_merge_data):
+        while p < n:
             k = p
             while k >= 1:
-                for j in range(k % p, len(self.__butcher_odd_even_merge_data) - 1 - k, 2 * k):
-                    for i in range(0, min(k - 1, len(self.__butcher_odd_even_merge_data) - j - k - 1) + 1): 
-                        if int((i + j) / (p * 2)) == int((i + j + k) / (p * 2)):
+                for j in range(k % p, n - k, 2 * k):
+                    for i in range(min(k, n - j - k)):
+                        if (i + j) // (2 * p) == (i + j + k) // (2 * p):
                             if self.__butcher_odd_even_merge_data[i + j] > self.__butcher_odd_even_merge_data[i + j + k]:
                                 self.__butcher_odd_even_merge_data[i + j], self.__butcher_odd_even_merge_data[i + j + k] = self.__butcher_odd_even_merge_data[i + j + k], self.__butcher_odd_even_merge_data[i + j]
-                k = k // 2
-            p = p * 2
+                k //= 2
+            p *= 2
 
     @property
     def butcher_odd_even_merge_sort(self):
@@ -307,9 +317,9 @@ class SortingAlgorithms:
 
         self.__insertion_sort__()
         self.__merge_sort__(0, len(self.__original_data) - 1)
-        # self.__heap_sort()
         self.__selection_sort__()
         self.__bubble_sort__()
+        # self.__heap_sort()
         self.__quick_sort_naive__(0, len(self.__original_data) - 1)
         self.__quick_sort_improved_1__(0, len(self.__original_data) - 1)
         self.__quick_sort_improved_2__(0, len(self.__original_data) - 1)
