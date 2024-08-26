@@ -26,10 +26,6 @@ class Testing:
         print(f"{algorithm} is sorted and works")
 
     @classmethod
-    def check_if_sorted_ro(cls, sorted_list: list[int], algorithm_sorted_list: list[int]):
-        pass
-
-    @classmethod
     def check_short_sort(cls, lst: list[int], type: str):
         try:
             assert len(lst) == 100, "Size of array of arrays is not 100(short)"
@@ -109,7 +105,7 @@ class Testing:
 
         for case in lst:
             try:
-                assert len(case) == 1000, "Incorrect size for long lst"
+                assert len(case) == 10000, "Incorrect size for long lst"
 
             except AssertionError as e:
                 exit(f'Error for LONG: {e}')
@@ -133,6 +129,7 @@ class Testing:
 
                 except AssertionError as e:
                     exit(f'Error for LONG: {e}')
+
 
 
 
@@ -171,27 +168,35 @@ def main():
     Testing.check_if_sorted(sorted_lst, butcher_odd_even_merge_sort, "Butcher odd even merge Sort")
 
 
-    ## checking validity of list_creator.py
-    # lists = list_creator.GenerateLists()
+    # checking validity of list_creator.py
+    lists = list_creator.GenerateLists()
 
-    # ss = lists.get_short_sorted
-    # sr = lists.get_short_regular
-    # su = lists.get_short_rsorted
+    ss = lists.get_short_sorted
+    sr = lists.get_short_regular
+    su = lists.get_short_rsorted
 
-    # ms = lists.get_middle_sorted
-    # mr = lists.get_middle_regular
-    # mu = lists.get_middle_rsorted
+    ms = lists.get_middle_sorted
+    mr = lists.get_middle_regular
+    mu = lists.get_middle_rsorted
 
-    # test = Testing()
-    # # testing short lists
-    # test.check_short_sort(ss, "srt")
-    # test.check_short_sort(sr, "reg")
-    # test.check_short_sort(su, "rev")
+    ls = lists.get_middle_sorted
+    lr = lists.get_middle_regular
+    lu = lists.get_middle_rsorted
 
-    # # testing middle lists
-    # test.check_middle_sort(ms, "srt")
-    # test.check_middle_sort(mr, "reg")
-    # test.check_middle_sort(mu, "rev")
+    # testing short lists
+    Testing.check_short_sort(ss, "srt")
+    Testing.check_short_sort(sr, "reg")
+    Testing.check_short_sort(su, "rev")
+
+    # testing middle lists
+    Testing.check_middle_sort(ms, "srt")
+    Testing.check_middle_sort(mr, "reg")
+    Testing.check_middle_sort(mu, "rev")
+    
+    # testing long lists
+    Testing.check_middle_sort(ls, "srt")
+    Testing.check_middle_sort(lr, "reg")
+    Testing.check_middle_sort(lu, "rev")
 
 if __name__ == "__main__":
     main()
