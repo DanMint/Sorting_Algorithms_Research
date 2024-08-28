@@ -21,7 +21,7 @@ class GenerateLists:
 
     def fill_short(self):
         for i in range(0, 100):
-            lst = np.random.randint(0, 100, 100)
+            lst = np.random.randint(0, 5000, 5000)
             lst = list(int(j) for j in lst)
             self.short_regular.append(lst[:])
             lst.sort()
@@ -43,7 +43,7 @@ class GenerateLists:
 
     def fill_middle(self):
         for i in range(0, 100):
-            lst = np.random.randint(0, 1000, 1000)
+            lst = np.random.randint(0, 50000, 50000)
             lst = list(int(j) for j in lst)
             self.middle_regular.append(lst[:])
             lst.sort()
@@ -65,7 +65,7 @@ class GenerateLists:
 
     def fill_long(self):
         for i in range(0, 100):
-            lst = np.random.randint(0, 10000, 10000)
+            lst = np.random.randint(0, 500000, 500000)
             lst = list(int(j) for j in lst)
             self.long_regular.append(lst[:])
             lst.sort()

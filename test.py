@@ -35,7 +35,7 @@ class Testing:
 
         for case in lst:
             try:
-                assert len(case) == 100, "Incorrect size for short lst"
+                assert len(case) == 5000, "Incorrect size for short lst"
 
             except AssertionError as e:
                 exit(f'Error for SHORT: {e}')
@@ -60,6 +60,8 @@ class Testing:
                 except AssertionError as e:
                     exit(f'Error for SHORT: {e}')
 
+        print(f"Short list test data loaded")
+
     @classmethod
     def check_middle_sort(cls, lst: list[int], type: str):
         try:
@@ -70,7 +72,7 @@ class Testing:
 
         for case in lst:
             try:
-                assert len(case) == 1000, "Incorrect size for middle lst"
+                assert len(case) == 50000, "Incorrect size for middle lst"
 
             except AssertionError as e:
                 exit(f'Error for MIDDLE: {e}')
@@ -95,6 +97,8 @@ class Testing:
                 except AssertionError as e:
                     exit(f'Error for MIDDLE: {e}')
 
+        print(f"Middle list test data loaded")
+
     @classmethod
     def check_long_sort(cls, lst: list[int], type: str):
         try:
@@ -105,7 +109,7 @@ class Testing:
 
         for case in lst:
             try:
-                assert len(case) == 10000, "Incorrect size for long lst"
+                assert len(case) == 500000, "Incorrect size for long lst"
 
             except AssertionError as e:
                 exit(f'Error for LONG: {e}')
@@ -130,6 +134,9 @@ class Testing:
                 except AssertionError as e:
                     exit(f'Error for LONG: {e}')
 
+        
+        print(f"Long list test data loaded")
+
 
 
 
@@ -139,18 +146,28 @@ def main():
     lst = list(int(i) for i in lst)
     sorted_lst = sorted(lst)
     algorithms = sorting_algorithms.SortingAlgorithms(lst)
-    algorithms.run()
 
-    insertion_sort = algorithms.insertion_sort
-    merge_sort = algorithms.merge_sort
-    selection_sort = algorithms.selection_sort
-    bubble_sort = algorithms.bubble_sort
+    insertion_sort_data = algorithms.insertion_sort
+    merge_sort_data = algorithms.merge_sort
+    selection_sort_data = algorithms.selection_sort
+    bubble_sort_data = algorithms.bubble_sort
+    heap_sort_data = []
+    quick_sort_naive_data = algorithms.quick_sort_naive
+    quick_sort_impr1_data = algorithms.quick_sort_imrproved_1
+    quick_sort_impr2_data = algorithms.quick_sort_improved_2
+    radix_sort_data = algorithms.radix_sort
+    butcher_odd_even_merge_sort_data = algorithms.butcher_odd_even_merge_sort
+
+    insertion_sort = insertion_sort_data[0]
+    merge_sort = merge_sort_data[0]
+    selection_sort = selection_sort_data[0]
+    bubble_sort = bubble_sort_data[0]
     heap_sort = []
-    quick_sort_naive = algorithms.quick_sort_naive
-    quick_sort_impr1 = algorithms.quick_sort_imrproved_1
-    quick_sort_impr2 = algorithms.quick_sort_improved_2
-    radix_sort = algorithms.radix_sort
-    butcher_odd_even_merge_sort = algorithms.butcher_odd_even_merge_sort
+    quick_sort_naive = quick_sort_naive_data[0]
+    quick_sort_impr1 = quick_sort_impr1_data[0]
+    quick_sort_impr2 = quick_sort_impr2_data[0]
+    radix_sort = radix_sort_data[0]
+    butcher_odd_even_merge_sort = butcher_odd_even_merge_sort_data[0]
 
     print(f"Sorted            : {sorted_lst}")
     print(f"After butcher sort: {butcher_odd_even_merge_sort}")
@@ -169,6 +186,7 @@ def main():
 
 
     # checking validity of list_creator.py
+    global lists
     lists = list_creator.GenerateLists()
 
     ss = lists.get_short_sorted
@@ -179,9 +197,9 @@ def main():
     mr = lists.get_middle_regular
     mu = lists.get_middle_rsorted
 
-    ls = lists.get_middle_sorted
-    lr = lists.get_middle_regular
-    lu = lists.get_middle_rsorted
+    ls = lists.get_long_sorted
+    lr = lists.get_long_regular
+    lu = lists.get_long_rsorted
 
     # testing short lists
     Testing.check_short_sort(ss, "srt")
@@ -194,9 +212,11 @@ def main():
     Testing.check_middle_sort(mu, "rev")
     
     # testing long lists
-    Testing.check_middle_sort(ls, "srt")
-    Testing.check_middle_sort(lr, "reg")
-    Testing.check_middle_sort(lu, "rev")
+    Testing.check_long_sort(ls, "srt")
+    Testing.check_long_sort(lr, "reg")
+    Testing.check_long_sort(lu, "rev")
+
+    return True
 
 if __name__ == "__main__":
     main()

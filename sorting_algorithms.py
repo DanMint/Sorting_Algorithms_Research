@@ -1,4 +1,6 @@
 import sys
+import timer
+import numpy as np
 
 class SortingAlgorithms:
     def __init__(self, data: list[int] = None) -> None:
@@ -26,7 +28,6 @@ class SortingAlgorithms:
         return self.__sorted_data
 
     def __insertion_sort__(self):
-        # start time (for algo speed)
         for i in range(len(self.__insertion_data)):
             key = self.__insertion_data[i]
             j = i - 1
@@ -36,11 +37,14 @@ class SortingAlgorithms:
                 j -= 1
 
             self.__insertion_data[j + 1] = key
-        # end time 
 
     @property
     def insertion_sort(self):
-        return self.__insertion_data
+        timex = timer.Timer()
+        timex.start_time
+        self.__insertion_sort__()
+        timex.end_time
+        return self.__insertion_data, timex.get_time
 
     def __merge_sort__(self, p, r):
         # start time
@@ -81,7 +85,11 @@ class SortingAlgorithms:
 
     @property
     def merge_sort(self):
-        return self.__merge_data
+        timex = timer.Timer()
+        timex.start_time
+        self.__merge_sort__(0, len(self.__original_data) - 1)
+        timex.end_time
+        return self.__merge_data, timex.get_time
 
     def __selection_sort__(self):
         # start time
@@ -96,7 +104,11 @@ class SortingAlgorithms:
 
     @property
     def selection_sort(self):
-        return self.__selection_data
+        timex = timer.Timer()
+        timex.start_time
+        self.__selection_sort__()
+        timex.end_time
+        return self.__selection_data, timex.get_time
 
     def __bubble_sort__(self):
         # start time
@@ -110,7 +122,11 @@ class SortingAlgorithms:
 
     @property
     def bubble_sort(self):
-        return self.__bubble_data
+        timex = timer.Timer()
+        timex.start_time
+        self.__bubble_sort__()
+        timex.end_time
+        return self.__bubble_data, timex.get_time
 
     def __heap_sort__(self):
         self.__build_max_heap__()
@@ -118,14 +134,12 @@ class SortingAlgorithms:
             pass
 
     def __quick_sort_naive__(self, p, r):
-        # start time
         if p < r:
-            q = self.__partion_naive__(p, r)
+            q = self.__partition_naive__(p, r)
             self.__quick_sort_naive__(p, q - 1)
             self.__quick_sort_naive__(q + 1, r)
-        # end time
 
-    def __partion_naive__(self, p, r):
+    def __partition_naive__(self, p, r):
         x = self.__quick__naive_data[r]
         i = p - 1
         for j in range(p, r):
@@ -138,7 +152,11 @@ class SortingAlgorithms:
 
     @property
     def quick_sort_naive(self):
-        return self.__quick__naive_data
+        timex = timer.Timer()
+        timex.start_time
+        self.__quick_sort_naive__(0, len(self.__original_data) - 1)
+        timex.end_time
+        return self.__quick__naive_data, timex.get_time
 
     def __quick_sort_improved_1__(self, p, r):
         if p < r:
@@ -168,7 +186,11 @@ class SortingAlgorithms:
     
     @property
     def quick_sort_imrproved_1(self):
-        return self.__quick_impr_1
+        timex = timer.Timer()
+        timex.start_time
+        self.__quick_sort_improved_1__(0, len(self.__original_data) - 1)
+        timex.end_time
+        return self.__quick_impr_1, timex.get_time
 
     def __quick_sort_improved_2__(self, p, r):
         if p < r:
@@ -207,7 +229,11 @@ class SortingAlgorithms:
 
     @property
     def quick_sort_improved_2(self):
-        return self.__quick_impr_2
+        timex = timer.Timer()
+        timex.start_time
+        self.__quick_sort_improved_2__(0, len(self.__original_data) - 1)
+        timex.end_time
+        return self.__quick_impr_2, timex.get_time
 
     # does not sort neagtive numbers
     def __radix_naive_sort__(self):
@@ -278,7 +304,11 @@ class SortingAlgorithms:
 
     @property
     def radix_sort(self):
-        return self.__radix_impr_data
+        timex = timer.Timer()
+        timex.start_time
+        self.__radix_improved_sort__()
+        timex.end_time
+        return self.__radix_impr_data, timex.get_time
         
     def __butcher_odd_even_merge_sort__(self):
         n = len(self.__butcher_odd_even_merge_data)
@@ -297,7 +327,11 @@ class SortingAlgorithms:
 
     @property
     def butcher_odd_even_merge_sort(self):
-        return self.__butcher_odd_even_merge_data
+        timex = timer.Timer()
+        timex.start_time
+        self.__butcher_odd_even_merge_sort__()
+        timex.end_time
+        return self.__butcher_odd_even_merge_data, timex.get_time
 
     def __stalin_sort__(self):
         max = -123456789
@@ -307,30 +341,34 @@ class SortingAlgorithms:
             else:
                 max = value
 
-    def run(self) -> None:
-        try:
-            assert self.__original_data != None , "Cant sort because array is empty"
+    @property
+    def test_qsn(self):
+        self.__quick_sort_naive__(0, len(self.__quick__naive_data) - 1)
+        return self.__quick__naive_data
 
-        except AssertionError as e:
-            print(e)
-            return()
+    @property
+    def get_times(self):
+        insertion_sort_data = self.insertion_sort
+        merge_sort_data = self.merge_sort
+        selection_sort_data = self.selection_sort
+        bubble_sort_data = self.bubble_sort
+        heap_sort_data = []
+        quick_sort_naive_data = self.quick_sort_naive
+        quick_sort_impr1_data = self.quick_sort_imrproved_1
+        quick_sort_impr2_data = self.quick_sort_improved_2
+        radix_sort_data = self.radix_sort
+        butcher_odd_even_merge_sort_data = self.butcher_odd_even_merge_sort
 
-        self.__insertion_sort__()
-        self.__merge_sort__(0, len(self.__original_data) - 1)
-        self.__selection_sort__()
-        self.__bubble_sort__()
-        # self.__heap_sort()
-        self.__quick_sort_naive__(0, len(self.__original_data) - 1)
-        self.__quick_sort_improved_1__(0, len(self.__original_data) - 1)
-        self.__quick_sort_improved_2__(0, len(self.__original_data) - 1)
-        self.__radix_improved_sort__()
-        # self.__count_sort__()
-        self.__butcher_odd_even_merge_sort__()
-
-        
+        return [insertion_sort_data[1], merge_sort_data[1], selection_sort_data[1], 
+                bubble_sort_data[1], quick_sort_naive_data[1], quick_sort_impr1_data[1],
+                quick_sort_impr2_data[1], radix_sort_data[1], butcher_odd_even_merge_sort_data[1]]
 
 def main():
-    pass
+    # debugging 
+    lst = np.random.randint(0, 5000, 5000)
+    lst = list(int(j) for j in lst)
+    print(type(lst))
+
 
 if __name__ == "__main__":
     main()
