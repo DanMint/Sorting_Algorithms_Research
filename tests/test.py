@@ -1,5 +1,5 @@
-import sorting_algorithms
-import list_creator
+import sorting_algorithms.sorting_algorithms as sorting_algorithms
+import test_data_creation.list_creator as list_creator
 import numpy as np
 
 class Testing:

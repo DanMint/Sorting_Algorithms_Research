@@ -1,5 +1,5 @@
 import sys
-import timer
+import timer.timer as timer
 import numpy as np
 
 class SortingAlgorithms:

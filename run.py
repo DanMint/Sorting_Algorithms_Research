@@ -1,6 +1,6 @@
-import test
-import list_creator 
-import sorting_algorithms
+import tests.test as test
+import test_data_creation.list_creator as list_creator 
+import sorting_algorithms.sorting_algorithms as sorting_algorithms
 import sys
 sys.setrecursionlimit(10000)  # Increase as needed
 
