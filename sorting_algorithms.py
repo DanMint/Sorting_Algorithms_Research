@@ -347,21 +347,19 @@ class SortingAlgorithms:
         return self.__quick__naive_data
 
     @property
-    def get_times(self):
+    def get_times_main_test(self):
         insertion_sort_data = self.insertion_sort
         merge_sort_data = self.merge_sort
         selection_sort_data = self.selection_sort
         bubble_sort_data = self.bubble_sort
         heap_sort_data = []
-        quick_sort_naive_data = self.quick_sort_naive
-        quick_sort_impr1_data = self.quick_sort_imrproved_1
         quick_sort_impr2_data = self.quick_sort_improved_2
         radix_sort_data = self.radix_sort
         butcher_odd_even_merge_sort_data = self.butcher_odd_even_merge_sort
 
         return [insertion_sort_data[1], merge_sort_data[1], selection_sort_data[1], 
-                bubble_sort_data[1], quick_sort_naive_data[1], quick_sort_impr1_data[1],
-                quick_sort_impr2_data[1], radix_sort_data[1], butcher_odd_even_merge_sort_data[1]]
+                bubble_sort_data[1], quick_sort_impr2_data[1], radix_sort_data[1], 
+                butcher_odd_even_merge_sort_data[1]]
 
 def main():
     # debugging 

@@ -2,14 +2,24 @@ import test
 import list_creator 
 import sorting_algorithms
 import sys
-sys.setrecursionlimit(2000)  # Increase as needed
-
+sys.setrecursionlimit(10000)  # Increase as needed
 
 
 def times(lsts):
+    time = []
     for lst in lsts:
         srt_alg = sorting_algorithms.SortingAlgorithms(lst)
-        srt_alg.test_qsn
+        time.append(srt_alg.get_times_main_test)
+
+    return time
+
+def test_times(times, names):
+    time_test = test.Testing
+    for time, name in times, names:
+        print(f"Testing validity of {names} times list")
+        time_test.check_times(time)
+
+    print("Passed all time tests")
 
 
 def main():
@@ -17,7 +27,7 @@ def main():
         exit("ALL TESTS NOT PASSED")
 
     print("---------------------------------------------------------------------------------------------------------")
-    print("ALL TESTS PASSED")
+    print("ALL PRE PROCESSING TESTS PASSED")
     print("---------------------------------------------------------------------------------------------------------")
 
     # strting the time extractions
@@ -35,20 +45,36 @@ def main():
     lr = lists.get_long_regular
     lu = lists.get_long_rsorted
 
-    # times(ss)
+    print("----------------------------------------Starting the time calcualtions----------------------------------------")
 
-    for lst in sr:
-        srt_alg = sorting_algorithms.SortingAlgorithms(lst)
-        insertion = srt_alg.insertion_sort
-        print(insertion[1])
-        merge = srt_alg.merge_sort
-        print(merge[1])
-        bub = srt_alg.bubble_sort
-        print(bub[1])
-        quick = srt_alg.quick_sort_naive
-        print(quick[1])
+    print("Getting small sorted list times")
+    ss_times = times(ss)
+    print("Getting small regular list times")
+    sr_times = times(sr)
+    print("Getting small reverse sorted list times")
+    su_times = times(su)
+    print("Getting middle sorted list times")
+    ms_times = times(ms)
+    print("Getting middle regular list times")
+    mr_times = times(mr) 
+    print("Getting middle reverse sorted list times")
+    mu_times = times(mu)
+    print("Getting large sorted list times")
+    ls_times = times(ls)
+    print("Getting large regular list times")
+    lr_times = times(lr) 
+    print("Getting large reverse sorted list times")
+    lu_times = times(lu) 
 
-
+    all_times = [ss_times, sr_times, su_times, ms_times, mr_times, 
+                 mu_times, ls_times, lr_times, lu_times]
+    
+    all_times_names = ["small sorted", "small regular", 
+                       "small revrse sorted", "middle sorted", 
+                       "middle regular", "middle reverse sorted", "long sorted", "long regular", 
+                       "long unosrted"]
+    
+    test_times(all_times, all_times_names)
 
 
 if __name__ == "__main__":

@@ -137,8 +137,23 @@ class Testing:
         
         print(f"Long list test data loaded")
 
+    @classmethod
+    def check_times(cls, times: list[list]):
+        try:
+            assert len(times) != 0, "Empty times list"
 
+        except AssertionError as e:
+            print(f"Time Error: {e}")
+            exit
 
+        for time in times:
+            try:
+                assert time != None and time >= 0, "Invalid time in list"
+            
+            except AssertionError as e:
+                print(f"Time error: {e}")
+
+        
 
 def main():
     # checking algorithms in sorting_algorithms.py
