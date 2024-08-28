@@ -35,7 +35,7 @@ class Testing:
 
         for case in lst:
             try:
-                assert len(case) == 5000, "Incorrect size for short lst"
+                assert len(case) == 2500, "Incorrect size for short lst"
 
             except AssertionError as e:
                 exit(f'Error for SHORT: {e}')
@@ -72,7 +72,7 @@ class Testing:
 
         for case in lst:
             try:
-                assert len(case) == 50000, "Incorrect size for middle lst"
+                assert len(case) == 5000, "Incorrect size for middle lst"
 
             except AssertionError as e:
                 exit(f'Error for MIDDLE: {e}')
@@ -109,7 +109,7 @@ class Testing:
 
         for case in lst:
             try:
-                assert len(case) == 500000, "Incorrect size for long lst"
+                assert len(case) == 10000, "Incorrect size for long lst"
 
             except AssertionError as e:
                 exit(f'Error for LONG: {e}')
