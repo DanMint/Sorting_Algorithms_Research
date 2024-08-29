@@ -55,9 +55,13 @@ In this repository I wanted to conduct reserach into sorting algorithms and thie
 
 ## <ins>Interesting Insight<ins>
 
-It is very interesting how diffrent algorithms act with diffrent inputs.Eventhough, the diffrence between the sorting algorithms is always evidenet the diffrence becomes much clearer with larger inputs. An interesting fact that I have observed that similar execution algorithms typicaly have the smame line in the graph further proving the correctness of thier time complexity. Below I have listed two exampels:
+It is very interesting how diffrent algorithms act with diffrent inputs. Eventhough, the diffrence between the sorting algorithms is always evidenet the diffrence becomes much clearer with larger inputs. An interesting fact that I have observed is that, similar execution algorithms typicaly have the same plot in the graph. This proves the correctness of thier time complexity. Below I have listed two exampels:
 
 ![Small Regular Data Sorting](plots/plots_of_algo_comparisons/small%20regular.png)
+
+In this exmaple its fairly clear that sorting algorithms like: *Radix Sort*, *Quick Sort(improved 2)*, *Merge Sort*, *Heap sort* and *Butcher odd even merge sort* execute quicker then the other algorithms. Its also evident that these algorithms clump together on the plot. Eventhough, this graph shows that the *Butcher odd even merge sort* performs the worst of of the five best ones its less evident when we look on a larger input.
+
+![Large Regular Data Sorting](plots/plots_of_algo_comparisons/long%20regular.png)
 
 
 
