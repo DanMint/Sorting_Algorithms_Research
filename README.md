@@ -59,7 +59,7 @@ It is very interesting how diffrent algorithms act with diffrent inputs. Eventho
 
 ![Small Regular Data Sorting](plots/plots_of_algo_comparisons/small%20regular.png)
 
-In this exmaple its fairly clear that sorting algorithms like: *Radix Sort*, *Quick Sort(improved 2)*, *Merge Sort*, *Heap sort* and *Butcher odd even merge sort* execute quicker then the other algorithms. Its also evident that these algorithms clump together on the plot. Eventhough, this graph shows that the *Butcher odd even merge sort* performs the worst of of the five best ones its kind of more evident when we look on a larger input.
+In this exmaple its fairly clear that sorting algorithms like: *Counting Sort*, *Radix Sort*, *Quick Sort(improved 2)*, *Merge Sort*, *Heap sort* and *Butcher odd even merge sort* execute quicker then the other algorithms. Its also evident that these algorithms clump together on the plot. Eventhough, this graph shows that the *Butcher odd even merge sort* performs the worst of of the five best ones its kind of more evident when we look on a larger input.
 
 ![Large Regular Data Sorting](plots/plots_of_algo_comparisons/long%20regular.png)
 
