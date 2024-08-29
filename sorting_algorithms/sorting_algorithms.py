@@ -119,7 +119,6 @@ class SortingAlgorithms:
                     self.__bubble_data[j], self.__bubble_data[j + 1] = self.__bubble_data[j + 1], self.__bubble_data[j]
         # end time
 
-
     @property
     def bubble_sort(self):
         timex = timer.Timer()
@@ -128,11 +127,49 @@ class SortingAlgorithms:
         timex.end_time
         return self.__bubble_data, timex.get_time
 
-    def __heap_sort__(self):
-        self.__build_max_heap__()
-        for i in range(len(self.__heap_data) - 1, 1, -1):
-            pass
+    def parent(self, i):
+        return (i - 1) // 2
 
+    def left(self, i):
+        return 2 * i + 1
+
+    def right(self, i):
+        return 2 * i + 2
+
+    def __max_heapify__(self, i, heap_size):
+        l = self.left(i)
+        r = self.right(i)
+        largest = i
+        
+        if l < heap_size and self.__heap_data[l] > self.__heap_data[i]:
+            largest = l
+        if r < heap_size and self.__heap_data[r] > self.__heap_data[largest]:
+            largest = r
+        if largest != i:
+            self.__heap_data[i], self.__heap_data[largest] = self.__heap_data[largest], self.__heap_data[i] 
+            self.__max_heapify__(largest, heap_size)
+
+    def __build_max_heap__(self):
+        heap_size = len(self.__heap_data)
+        for i in range(len(self.__heap_data) // 2 - 1, -1, -1):
+            self.__max_heapify__(i, heap_size)
+
+    def __heapsort__(self):
+        self.__build_max_heap__()
+        heap_size = len(self.__heap_data)
+        for i in range(len(self.__heap_data) - 1, 0, -1):
+            self.__heap_data[0], self.__heap_data[i] = self.__heap_data[i], self.__heap_data[0]
+            heap_size -= 1
+            self.__max_heapify__(0, heap_size)
+
+    @property
+    def heap_sort(self):
+        timex = timer.Timer()
+        timex.start_time
+        self.__heapsort__()
+        timex.end_time
+        return self.__bubble_data, timex.get_time
+    
     def __quick_sort_naive__(self, p, r):
         if p < r:
             q = self.__partition_naive__(p, r)
@@ -352,18 +389,18 @@ class SortingAlgorithms:
         merge_sort_data = self.merge_sort
         selection_sort_data = self.selection_sort
         bubble_sort_data = self.bubble_sort
-        heap_sort_data = []
+        heap_sort_data = self.heap_sort
         quick_sort_impr2_data = self.quick_sort_improved_2
         radix_sort_data = self.radix_sort
         butcher_odd_even_merge_sort_data = self.butcher_odd_even_merge_sort
 
         return [insertion_sort_data[1], merge_sort_data[1], selection_sort_data[1], 
-                bubble_sort_data[1], quick_sort_impr2_data[1], radix_sort_data[1], 
+                bubble_sort_data[1], heap_sort_data[1],quick_sort_impr2_data[1], radix_sort_data[1], 
                 butcher_odd_even_merge_sort_data[1]]
 
 def main():
     # debugging 
-    lst = np.random.randint(0, 5000, 5000)
+    lst = np.random.randint(0, 20, 20)
     lst = list(int(j) for j in lst)
     print(type(lst))
 

@@ -78,7 +78,7 @@ def main():
     test_times(all_times)
     
     algorithms_names = ["Insertion", "Merge", "Selection", "Bubble",
-                        "Quick", "Radix", "Butcher"]
+                        "Heap", "Quick", "Radix", "Butcher"]
     
     csv_create = create_csv.CreateCSV
     for j in range(len(all_times)):
