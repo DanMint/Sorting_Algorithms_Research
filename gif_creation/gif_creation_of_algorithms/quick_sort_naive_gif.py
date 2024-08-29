@@ -69,9 +69,11 @@ class SortingVisualizer:
                 writer.append_data(image)
 
         for filename in filenames:
-            os.remove(filename)
-        os.rmdir(frame_dir)
+            if os.path.exists(filename):  
+                os.remove(filename)
+        if os.path.exists(frame_dir):  
+            os.rmdir(frame_dir)
 
 def run(lst):
     visualizer = SortingVisualizer(lst)
-    visualizer.quick_sort_naive_gif(duration=0.5)  
+    visualizer.quick_sort_naive_gif(duration=10)  

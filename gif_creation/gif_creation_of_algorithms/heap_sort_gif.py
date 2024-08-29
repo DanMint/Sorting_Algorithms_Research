@@ -90,13 +90,11 @@ class SortingVisualizer:
                     writer.append_data(image)
 
         for filename in filenames:
-            if os.path.exists(filename):  # Check if the file exists before trying to delete it
+            if os.path.exists(filename): 
                 os.remove(filename)
-        if os.path.exists(frame_dir):  # Check if the directory exists before trying to delete it
+        if os.path.exists(frame_dir):  
             os.rmdir(frame_dir)
-
-        print(f"GIF saved as {gif_path}")
 
 def run(lst):
     visualizer = SortingVisualizer(lst)
-    visualizer.heap_sort_gif(duration=0.5)
+    visualizer.heap_sort_gif(duration=10)

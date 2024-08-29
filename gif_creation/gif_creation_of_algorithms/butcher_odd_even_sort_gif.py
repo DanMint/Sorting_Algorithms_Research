@@ -3,60 +3,67 @@ import numpy as np
 import imageio
 import os
 
-def butcher_odd_even_merge_sort_gif(lst, gif_path, duration=0.1):
-    def butcher_odd_even_merge_sort(arr):
-        nonlocal frame_count
+global gif_path
+gif_path = 'gifs/butcher_odd_even_merge_sort_animation.gif'
+
+class SortingVisualizer:
+    def __init__(self, data):
+        self.__butcher_odd_even_merge_data = data[:]  
+
+    def __butcher_odd_even_merge_sort__(self, x, frame_dir, filenames, frame_count):
+        n = len(self.__butcher_odd_even_merge_data)
+        
         p = 1
-        while p < len(arr):
+        while p < n:
             k = p
             while k >= 1:
-                for j in range(k % p, len(arr) - 1 - k, 2 * k):
-                    for i in range(0, min(k - 1, len(arr) - j - k - 1) + 1): 
-                        if int((i + j) / (p * 2)) == int((i + j + k) / (p * 2)):
-                            if arr[i + j] > arr[i + j + k]:
-                                arr[i + j], arr[i + j + k] = arr[i + j + k], arr[i + j]
+                for j in range(k % p, n - k, 2 * k):
+                    for i in range(min(k, n - j - k)):
+                        if (i + j) // (2 * p) == (i + j + k) // (2 * p):
+                            if self.__butcher_odd_even_merge_data[i + j] > self.__butcher_odd_even_merge_data[i + j + k]:
+                                self.__butcher_odd_even_merge_data[i + j], self.__butcher_odd_even_merge_data[i + j + k] = self.__butcher_odd_even_merge_data[i + j + k], self.__butcher_odd_even_merge_data[i + j]
 
-                                plt.bar(x, lst)
-                                plt.ylim(0, max(lst) + 10)  
+                                plt.bar(x, self.__butcher_odd_even_merge_data)
                                 filename = os.path.join(frame_dir, f'frame_{frame_count}.png')
                                 plt.savefig(filename)
                                 filenames.append(filename)
                                 plt.clf()
                                 frame_count += 1
-                k = k // 2
-            p = p * 2
+                k //= 2
+            p *= 2
 
-    gif_dir = os.path.dirname(gif_path)
-    if not os.path.exists(gif_dir):
-        os.makedirs(gif_dir)
+    def butcher_odd_even_merge_sort_gif(self, gif_name=gif_path, duration=0.5):  
+        x = np.arange(0, len(self.__butcher_odd_even_merge_data), 1)
 
-    frame_dir = os.path.join(gif_dir, 'frames')
-    if not os.path.exists(frame_dir):
-        os.makedirs(frame_dir)
+        gif_dir = os.getcwd()
 
-    filenames = []
-    frame_count = 0
-    x = np.arange(0, len(lst), 1)
+        frame_dir = os.path.join(gif_dir, 'frames')
+        if not os.path.exists(frame_dir):
+            os.makedirs(frame_dir)
 
-    butcher_odd_even_merge_sort(lst)
+        filenames = []
+        frame_count = 0
 
-    plt.bar(x, lst)
-    plt.ylim(0, max(lst) + 10)  
-    filename = os.path.join(frame_dir, f'frame_{frame_count}.png')
-    plt.savefig(filename)
-    filenames.append(filename)
+        self.__butcher_odd_even_merge_sort__(x, frame_dir, filenames, frame_count)
 
-    with imageio.get_writer(gif_path, mode='I', duration=duration) as writer:
+        plt.bar(x, self.__butcher_odd_even_merge_data)
+        filename = os.path.join(frame_dir, f'frame_{frame_count}.png')
+        plt.savefig(filename)
+        filenames.append(filename)
+
+        gif_path = os.path.join(gif_dir, gif_name)
+        with imageio.get_writer(gif_path, mode='I', duration=duration) as writer:
+            for filename in filenames:
+                if os.path.exists(filename):
+                    image = imageio.v2.imread(filename)
+                    writer.append_data(image)
+
         for filename in filenames:
-            image = imageio.v2.imread(filename)
-            writer.append_data(image)
-
-    for filename in filenames:
-        os.remove(filename)
-    os.rmdir(frame_dir)
-
-
-gif_path = 'gifs/butcher_odd_even_merge_sort_animation.gif'
+            if os.path.exists(filename):
+                os.remove(filename)
+        if os.path.exists(frame_dir):
+            os.rmdir(frame_dir)
 
 def run(lst):
-    butcher_odd_even_merge_sort_gif(lst, gif_path)
+    visualizer = SortingVisualizer(lst)
+    visualizer.butcher_odd_even_merge_sort_gif(duration=10)

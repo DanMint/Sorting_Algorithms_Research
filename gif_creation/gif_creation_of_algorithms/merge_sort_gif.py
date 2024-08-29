@@ -2,99 +2,88 @@ import matplotlib.pyplot as plt
 import numpy as np
 import imageio
 import os
+import sys
 
-def merge_sort_gif(lst, gif_path, duration=0.1):
-    x = np.arange(0, len(lst), 1)
+global gif_path
+gif_path = 'gifs/merge_sort_animation.gif'
 
-    gif_dir = os.path.dirname(gif_path)
-    if not os.path.exists(gif_dir):
-        os.makedirs(gif_dir)
+class SortingVisualizer:
+    def __init__(self, data):
+        self.__merge_data = data[:]  
 
-    frame_dir = os.path.join(gif_dir, 'frames')
-    if not os.path.exists(frame_dir):
-        os.makedirs(frame_dir)
+    def __merge_sort__(self, p, r, x, frame_dir, filenames, frame_count):
+        if p >= r:
+            return
+        
+        q = int((p + r) / 2)
+        self.__merge_sort__(p, q, x, frame_dir, filenames, frame_count)
+        self.__merge_sort__(q + 1, r, x, frame_dir, filenames, frame_count)
+        self.__merge__(p, q, r, x, frame_dir, filenames, frame_count)
 
-    filenames = []
-    frame_count = 0
-
-    def merge(p, q, r):
-        nonlocal frame_count
+    def __merge__(self, p, q, r, x, frame_dir, filenames, frame_count):
         n1 = q - p + 1
         n2 = r - q
+        L = []
+        R = []
+        for val in range(n1):
+            L.append(self.__merge_data[p + val])
 
-        L = lst[p:q + 1]
-        R = lst[q + 1:r + 1]
+        for val in range(n2):
+            R.append(self.__merge_data[q + 1 + val])
+        
+        L.append(sys.maxsize)
+        R.append(sys.maxsize)
 
         i = 0
         j = 0
-        k = p
 
-        while i < len(L) and j < len(R):
+        for k in range(p, r + 1):
             if L[i] <= R[j]:
-                lst[k] = L[i]
+                self.__merge_data[k] = L[i]
                 i += 1
             else:
-                lst[k] = R[j]
+                self.__merge_data[k] = R[j]
                 j += 1
-            k += 1
 
-            plt.bar(x, lst)
+            plt.bar(x, self.__merge_data)
             filename = os.path.join(frame_dir, f'frame_{frame_count}.png')
             plt.savefig(filename)
             filenames.append(filename)
             plt.clf()
             frame_count += 1
 
-        while i < len(L):
-            lst[k] = L[i]
-            i += 1
-            k += 1
+    def merge_sort_gif(self, gif_name=gif_path, duration=0.5):  
+        x = np.arange(0, len(self.__merge_data), 1)
 
-            plt.bar(x, lst)
-            filename = os.path.join(frame_dir, f'frame_{frame_count}.png')
-            plt.savefig(filename)
-            filenames.append(filename)
-            plt.clf()
-            frame_count += 1
+        gif_dir = os.getcwd()
 
-        while j < len(R):
-            lst[k] = R[j]
-            j += 1
-            k += 1
+        frame_dir = os.path.join(gif_dir, 'frames')
+        if not os.path.exists(frame_dir):
+            os.makedirs(frame_dir)
 
-            plt.bar(x, lst)
-            filename = os.path.join(frame_dir, f'frame_{frame_count}.png')
-            plt.savefig(filename)
-            filenames.append(filename)
-            plt.clf()
-            frame_count += 1
+        filenames = []
+        frame_count = 0
 
-    def merge_sort(p, r):
-        if p < r:
-            q = (p + r) // 2
-            merge_sort(p, q)
-            merge_sort(q + 1, r)
-            merge(p, q, r)
+        self.__merge_sort__(0, len(self.__merge_data) - 1, x, frame_dir, filenames, frame_count)
 
-    merge_sort(0, len(lst) - 1)
+        plt.bar(x, self.__merge_data)
+        filename = os.path.join(frame_dir, f'frame_{frame_count}.png')
+        plt.savefig(filename)
+        filenames.append(filename)
 
-    plt.bar(x, lst)
-    filename = os.path.join(frame_dir, f'frame_{frame_count}.png')
-    plt.savefig(filename)
-    filenames.append(filename)
+        gif_path = os.path.join(gif_dir, gif_name)
+        with imageio.get_writer(gif_path, mode='I', duration=duration) as writer:
+            for filename in filenames:
+                if os.path.exists(filename):
+                    image = imageio.v2.imread(filename)
+                    writer.append_data(image)
 
-    with imageio.get_writer(gif_path, mode='I', duration=duration) as writer:
         for filename in filenames:
-            image = imageio.v2.imread(filename)
-            writer.append_data(image)
-
-    for filename in filenames:
-        os.remove(filename)
-    os.rmdir(frame_dir)
-
-
-gif_path = 'gifs/merge_sort_animation.gif'
+            if os.path.exists(filename):  
+                os.remove(filename)
+        if os.path.exists(frame_dir):  
+            os.rmdir(frame_dir)
 
 def run(lst):
-    merge_sort_gif(lst, gif_path)
-
+    visualizer = SortingVisualizer(lst)
+    visualizer.merge_sort_gif(duration=10)
