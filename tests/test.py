@@ -144,14 +144,22 @@ class Testing:
 
         except AssertionError as e:
             print(f"Time Error: {e}")
-            exit
+            exit()
 
         for time in times:
             try:
-                assert time != None and time >= 0, "Invalid time in list"
-            
+                assert len(time) != 0 and time != None, "Invalid time in times list"
+
             except AssertionError as e:
                 print(f"Time error: {e}")
+                exit()
+            for i in time:
+                try:
+                    assert i != None and i >= 0, "Invalid time in list"
+                
+                except AssertionError as e:
+                    print(f"Time error: {e}")
+                    exit()
 
         
 

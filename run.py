@@ -1,8 +1,9 @@
 import tests.test as test
 import test_data_creation.list_creator as list_creator 
 import sorting_algorithms.sorting_algorithms as sorting_algorithms
+from time_csv_creation import create_csv
 import sys
-sys.setrecursionlimit(10000)  # Increase as needed
+sys.setrecursionlimit(10000)  
 
 
 def times(lsts, name):
@@ -14,10 +15,9 @@ def times(lsts, name):
 
     return time
 
-def test_times(times, names):
+def test_times(times):
     time_test = test.Testing
-    for time, name in times, names:
-        print(f"Testing validity of {name} times list")
+    for time in times:
         time_test.check_times(time)
 
     print("Passed all time tests")
@@ -75,8 +75,21 @@ def main():
                        "middle regular", "middle reverse sorted", "long sorted", "long regular", 
                        "long unosrted"]
     
-    test_times(all_times, all_times_names)
-
+    test_times(all_times)
+    
+    algorithms_names = ["Insertion", "Merge", "Selection", "Bubble", 2
+                        "Quick", "Radix", "Butcher"]
+    
+    csv_create = create_csv.CreateCSV
+    for j in range(len(all_times)):
+        print("in run")
+        # all_times[j] -> the times (ex ss_times)
+        # algorithms_names -> the algorithms used
+        # all_times_names -> ex small sorted 
+        data = {key: [row[i] for row in all_times[j]] for i, key in enumerate(algorithms_names)}
+        csv_create.time_csv_creator(data, all_times_names[j])
+    
+    
 
 if __name__ == "__main__":
     main()
