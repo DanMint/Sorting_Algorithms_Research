@@ -31,11 +31,11 @@ In this repository, I wanted to conduct reserach into sorting algorithms and the
 
 ### <ins>Quick Sort (improvment 1)<ins>
 
-![Quick Sort (improvment 1) demo](gifs/quick_sort_impr_1.gif)
+![Quick Sort (improvment 1) demo](gifs/quick_sort_impr_1_animation.gif)
 
 ### <ins>Quick Sort (improvment 2)<ins>
 
-![Quick Sort (improvment 2) demo](gifs/quick_sort_impr_2.gif)
+![Quick Sort (improvment 2) demo](gifs/quick_sort_impr_2_animation.gif)
 
 ### <ins>Counting Sort<ins>
 
