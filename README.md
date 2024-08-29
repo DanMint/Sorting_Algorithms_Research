@@ -57,7 +57,8 @@ In this repository I wanted to conduct reserach into sorting algorithms and thie
 
 It is very interesting how diffrent algorithms act with diffrent inputs.Eventhough, the diffrence between the sorting algorithms is always evidenet the diffrence becomes much clearer with larger inputs. An interesting fact that I have observed that similar execution algorithms typicaly have the smame line in the graph further proving the correctness of thier time complexity. Below I have listed two exampels:
 
-![Bubble Sort demo](plots/plots_of_algo_comparisons/small_regular.png)
+![Small Regular Data Sorting](plots/plots_of_algo_comparisons/small%20regular.png)
+
 
 
 
