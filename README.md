@@ -52,3 +52,12 @@ In this repository I wanted to conduct reserach into sorting algorithms and thie
 ### <ins>Butcher Odd Even Merge Sort<ins>
 
 ![Butcher Odd Even Merge Sort demo](gifs/butcher_odd_even_merge_sort_animation.gif)
+
+## <ins>Interesting Insight<ins>
+
+It is very interesting how diffrent algorithms act with diffrent inputs.Eventhough, the diffrence between the sorting algorithms is always evidenet the diffrence becomes much clearer with larger inputs. An interesting fact that I have observed that similar execution algorithms typicaly have the smame line in the graph further proving the correctness of thier time complexity. Below I have listed two exampels:
+
+![Small Input Sorting](plots/plots_of_algo_comparisons/small regular.png)
+
+
+
