@@ -45,7 +45,7 @@ def bubble_sort_gif(lst, gif_path, duration=0.1):
     os.rmdir(frame_dir)
 
 
-gif_path = 'Algorithm_Project/gifs/bubble_sort_animation.gif'
+gif_path = 'gifs/bubble_sort_animation.gif'
 
 def run(lst):
     bubble_sort_gif(lst, gif_path)

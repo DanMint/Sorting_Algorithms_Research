@@ -82,7 +82,7 @@ def radix_improved_sort_gif(lst, gif_path, duration=0.1):
     os.rmdir(frame_dir)
 
 
-gif_path = 'Algorithm_Project/gifs/radix_sort_improved_animation.gif'
+gif_path = 'gifs/radix_sort_improved_animation.gif'
 
 def run(lst):
     radix_improved_sort_gif(lst, gif_path)

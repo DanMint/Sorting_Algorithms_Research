@@ -73,7 +73,7 @@ def counting_sort_gif(lst, gif_path, duration=0.5):
     os.rmdir(frame_dir)
 
 
-gif_path = 'Algorithm_Project/gifs/counting_sort_animation.gif'
+gif_path = 'gifs/counting_sort_animation.gif'
 
 def run(lst): 
     counting_sort_gif(lst, gif_path)

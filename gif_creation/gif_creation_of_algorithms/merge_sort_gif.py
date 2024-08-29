@@ -93,7 +93,7 @@ def merge_sort_gif(lst, gif_path, duration=0.1):
     os.rmdir(frame_dir)
 
 
-gif_path = 'Algorithm_Project/gifs/merge_sort_animation.gif'
+gif_path = 'gifs/merge_sort_animation.gif'
 
 def run(lst):
     merge_sort_gif(lst, gif_path)
