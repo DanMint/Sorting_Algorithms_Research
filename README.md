@@ -23,7 +23,7 @@ In this repository, I wanted to conduct reserach into sorting algorithms and the
 
 ### <ins>Heap sort<ins>
 
-![Heap Sort demo]()
+![Heap Sort demo](gifs/heap_sort_animation.gif)
 
 ### <ins>Quick Sort (naive)<ins>
 
