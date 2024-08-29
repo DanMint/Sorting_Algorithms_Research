@@ -2,6 +2,7 @@ import tests.test as test
 import test_data_creation.list_creator as list_creator 
 import sorting_algorithms.sorting_algorithms as sorting_algorithms
 from time_csv_creation import create_csv
+import plots_creations.all_algoritm_plotter.all_algorithm_plotter as aap
 import sys
 sys.setrecursionlimit(10000)  
 
@@ -78,7 +79,7 @@ def main():
     test_times(all_times)
     
     algorithms_names = ["Insertion", "Merge", "Selection", "Bubble",
-                        "Heap", "Quick", "Radix", "Butcher"]
+                        "Heap", "Counting" ,"Quick", "Radix", "Butcher"]
     
     csv_create = create_csv.CreateCSV
     for j in range(len(all_times)):
@@ -89,7 +90,8 @@ def main():
         data = {key: [row[i] for row in all_times[j]] for i, key in enumerate(algorithms_names)}
         csv_create.time_csv_creator(data, all_times_names[j])
     
-    
+    # plotting
+    aap.main()
 
 if __name__ == "__main__":
     main()

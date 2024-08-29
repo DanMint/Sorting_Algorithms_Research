@@ -12,8 +12,9 @@ class SortingAlgorithms:
         self.__bubble_data = data[:]
         self.__heap_data = data[:] 
         self.__quick__naive_data = data[:]
-        self.__quick_impr_1 = data[:]
-        self.__quick_impr_2 = data[:]
+        self.__quick_impr_1_data = data[:]
+        self.__quick_impr_2_data = data[:]
+        self.__counting_data = data[:]
         self.__radix_naive_data = data[:]
         self.__radix_impr_data = data[:]
         self.__butcher_odd_even_merge_data = data[:]
@@ -168,7 +169,12 @@ class SortingAlgorithms:
         timex.start_time
         self.__heapsort__()
         timex.end_time
-        return self.__bubble_data, timex.get_time
+        return self.__heap_data, timex.get_time
+    
+    @property
+    def test_heap_sort(self):
+        self.__heapsort__()
+        return self.__heap_data
     
     def __quick_sort_naive__(self, p, r):
         if p < r:
@@ -202,22 +208,22 @@ class SortingAlgorithms:
             self.__quick_sort_improved_1__(q + 1, r)
 
     def __partion_improved_1__(self, p, r):
-        x = self.__quick_impr_1[r]  
+        x = self.__quick_impr_1_data[r]  
         left = p
         right = r - 1
         while True:
-            while left <= right and self.__quick_impr_1[left] < x:
+            while left <= right and self.__quick_impr_1_data[left] < x:
                 left += 1
-            while right >= left and self.__quick_impr_1[right] > x:
+            while right >= left and self.__quick_impr_1_data[right] > x:
                 right -= 1
             if left >= right:
                 break
             else:
-                self.__quick_impr_1[left], self.__quick_impr_1[right] = self.__quick_impr_1[right], self.__quick_impr_1[left]
+                self.__quick_impr_1_data[left], self.__quick_impr_1_data[right] = self.__quick_impr_1_data[right], self.__quick_impr_1_data[left]
                 left += 1
                 right -= 1
         
-        self.__quick_impr_1[left], self.__quick_impr_1[r] = self.__quick_impr_1[r], self.__quick_impr_1[left]
+        self.__quick_impr_1_data[left], self.__quick_impr_1_data[r] = self.__quick_impr_1_data[r], self.__quick_impr_1_data[left]
         return left
 
     
@@ -227,7 +233,7 @@ class SortingAlgorithms:
         timex.start_time
         self.__quick_sort_improved_1__(0, len(self.__original_data) - 1)
         timex.end_time
-        return self.__quick_impr_1, timex.get_time
+        return self.__quick_impr_1_data, timex.get_time
 
     def __quick_sort_improved_2__(self, p, r):
         if p < r:
@@ -237,29 +243,29 @@ class SortingAlgorithms:
 
     def __partion_improved_2__(self, p, r):
         mid = (p + r) // 2
-        median_of_three = sorted([(self.__quick_impr_2[p], p), (self.__quick_impr_2[mid], mid), (self.__quick_impr_2[r], r)])
+        median_of_three = sorted([(self.__quick_impr_2_data[p], p), (self.__quick_impr_2_data[mid], mid), (self.__quick_impr_2_data[r], r)])
         pivot_value, pivot_index = median_of_three[1]
 
         # Move the pivot to the start
-        self.__quick_impr_2[pivot_index], self.__quick_impr_2[r] = self.__quick_impr_2[r], pivot_value
-        pivot = self.__quick_impr_2[r]
+        self.__quick_impr_2_data[pivot_index], self.__quick_impr_2_data[r] = self.__quick_impr_2_data[r], pivot_value
+        pivot = self.__quick_impr_2_data[r]
 
         left = p
         right = r - 1
 
         while True:
-            while left <= right and self.__quick_impr_2[left] < pivot:
+            while left <= right and self.__quick_impr_2_data[left] < pivot:
                 left += 1
-            while left <= right and self.__quick_impr_2[right] > pivot:
+            while left <= right and self.__quick_impr_2_data[right] > pivot:
                 right -= 1
             if left >= right:
                 break
             else:
-                self.__quick_impr_2[left], self.__quick_impr_2[right] = self.__quick_impr_2[right], self.__quick_impr_2[left]
+                self.__quick_impr_2_data[left], self.__quick_impr_2_data[right] = self.__quick_impr_2_data[right], self.__quick_impr_2_data[left]
                 left += 1
                 right -= 1
 
-        self.__quick_impr_2[left], self.__quick_impr_2[r] = self.__quick_impr_2[r], self.__quick_impr_2[left]
+        self.__quick_impr_2_data[left], self.__quick_impr_2_data[r] = self.__quick_impr_2_data[r], self.__quick_impr_2_data[left]
 
         return left
 
@@ -270,7 +276,36 @@ class SortingAlgorithms:
         timex.start_time
         self.__quick_sort_improved_2__(0, len(self.__original_data) - 1)
         timex.end_time
-        return self.__quick_impr_2, timex.get_time
+        return self.__quick_impr_2_data, timex.get_time
+    
+    def __counting_sort__(self, k):
+        C = [0] * (k + 1)  
+
+        for j in range(len(self.__counting_data)):
+            C[self.__counting_data[j]] += 1
+
+        for i in range(1, k + 1):
+            C[i] += C[i - 1]
+
+        B = [0] * len(self.__counting_data)
+        for j in range(len(self.__counting_data) - 1, -1, -1):
+            B[C[self.__counting_data[j]] - 1] = self.__counting_data[j]
+            C[self.__counting_data[j]] -= 1
+
+        self.__counting_data = B
+    
+    @property
+    def counting_sort(self):
+        timex = timer.Timer()
+        timex.start_time
+        self.__counting_sort__(max(self.__counting_data))
+        timex.end_time
+        return self.__counting_data, timex.get_time
+    
+    @property
+    def test_counting(self):
+        self.__counting_sort__(max(self.__counting_data))
+        return self.__counting_data
 
     # does not sort neagtive numbers
     def __radix_naive_sort__(self):
@@ -391,18 +426,21 @@ class SortingAlgorithms:
         bubble_sort_data = self.bubble_sort
         heap_sort_data = self.heap_sort
         quick_sort_impr2_data = self.quick_sort_improved_2
+        countin_sort_data = self.counting_sort
         radix_sort_data = self.radix_sort
         butcher_odd_even_merge_sort_data = self.butcher_odd_even_merge_sort
 
         return [insertion_sort_data[1], merge_sort_data[1], selection_sort_data[1], 
-                bubble_sort_data[1], heap_sort_data[1],quick_sort_impr2_data[1], radix_sort_data[1], 
-                butcher_odd_even_merge_sort_data[1]]
+                bubble_sort_data[1], heap_sort_data[1], quick_sort_impr2_data[1], 
+                countin_sort_data[1], radix_sort_data[1], butcher_odd_even_merge_sort_data[1]]
 
 def main():
     # debugging 
-    lst = np.random.randint(0, 20, 20)
+    lst = np.random.randint(0, 10, 10)
     lst = list(int(j) for j in lst)
-    print(type(lst))
+    print(f"Pre sorted list: {lst}")
+    srt = SortingAlgorithms(lst)
+    print(f"Sorted list: {srt.test_counting}")
 
 
 if __name__ == "__main__":
