@@ -27,15 +27,15 @@ In this repository, I wanted to conduct reserach into sorting algorithms and the
 
 ### <ins>Quick Sort (naive)<ins>
 
-![Quick Sort (naive) demo]()
+![Quick Sort (naive) demo](gifs/quick_sort_naive_animation.gif)
 
 ### <ins>Quick Sort (improvment 1)<ins>
 
-![Quick Sort (improvment 1) demo]()
+![Quick Sort (improvment 1) demo](gifs/quick_sort_impr_1.gif)
 
 ### <ins>Quick Sort (improvment 2)<ins>
 
-![Quick Sort (improvment 2) demo]()
+![Quick Sort (improvment 2) demo](gifs/quick_sort_impr_2.gif)
 
 ### <ins>Counting Sort<ins>
 
