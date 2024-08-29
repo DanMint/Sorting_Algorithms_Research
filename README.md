@@ -1,7 +1,7 @@
 ﻿# Sorting Algorithms Research
 
 ## <ins>Inspiration<ins>
-In this repository I wanted to conduct reserach into sorting algorithms and thier respective time complexities. Namely, I wanted to see and test if thier given time complexities are true and why do these time complexities matter (We always learn the theory side and the break down of time complexities however I wanted to see it for my self). This research project was inspired by my masters at Northeastern and the class that I have took at Northeasern EECE 7205 and in addition to my many calsses from my Bachelors degree at Moscow Insitute of Physics and Tecnology and Brandeis Univeristy.
+In this repository I wanted to conduct reserach into sorting algorithms and thier respective time complexities. Namely, I wanted to see and test if thier given time complexities are true and why do these time complexities matter (We always learn the theory side and the break down of time complexities however I wanted to see it for my self). This research project was inspired by my masters at *Northeastern University* and the class that I have took at Northeasern EECE 7205 and in addition to my many calsses from my Bachelors degree at *Moscow Insitute of Physics and Tecnology* and *Brandeis Univeristy*.
 
 ## <ins>Algorithms Used<ins>
 
