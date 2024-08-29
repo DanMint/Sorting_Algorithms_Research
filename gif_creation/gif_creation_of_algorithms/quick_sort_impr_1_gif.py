@@ -4,7 +4,7 @@ import imageio
 import os
 
 global gif_path
-gif_path = 'gifs/quick_sort_impr_1.gif'
+gif_path = 'gifs/quick_sort_impr_1_animation.gif'
 
 class SortingVisualizer:
     def __init__(self, data):
