@@ -75,9 +75,9 @@ The results are quite intriguing. We observe that the graphs for sorted and reve
 
 With this new insight, we can draw several conclusions. First, the results for arrays with 10,000 inputs appear less chaotic compared to those with 5,000 inputs. The trend observed in the edge cases of sorted and reverse sorted arrays has persisted. In the case of reverse sorted inputs, a cluster has formed consisting of Merge Sort, Butcher Odd-Even Merge Sort, Heap Sort, Quick Sort, and Radix Sort. As noted earlier, there is a hierarchy within this cluster, with Quick Sort emerging as the best performer and Butcher Odd-Even Merge Sort as the least efficient. For the sorted input, a similar cluster of algorithms appears, with the addition of Insertion Sort and Counting Sort. To further validate these observations, the next test will be conducted using arrays of 50,000 values.
 
-![large sorted data soring](plots/plots_of_algo_comparisons/large%20sorted.png)
-![large regular data soring](plots/plots_of_algo_comparisons/large%20regular.png)
-![large reverse sorted data soring](plots/plots_of_algo_comparisons/large%20unosrted.png)
+![large sorted data soring](plots/plots_of_algo_comparisons/long%20sorted.png)
+![large regular data soring](plots/plots_of_algo_comparisons/long%20regular.png)
+![large reverse sorted data soring](plots/plots_of_algo_comparisons/long%20unosrted.png)
 
 This confirms that the insights and hypotheses we previously deduced are valid and consistent throughout. On average, the performance of sorting algorithms tends to align with the expectations observed in the regular examples. However, in the two edge cases where the input array is either sorted or reverse sorted, certain algorithms perform better or worse, as illustrated in the graphs.
 
