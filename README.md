@@ -58,13 +58,16 @@ In this repository, I wanted to conduct reserach into sorting algorithms and the
 It is very interesting how diffrent algorithms act with diffrent inputs. Eventhough, the diffrence between the sorting algorithms is always evidenet the diffrence becomes much clearer with larger inputs. An interesting fact that I have observed is that, similar execution algorithms typicaly have the same plot in the graph. This proves the correctness of their time complexity. Below we can see three exampels. The first example consists of unsorted arrays of the size of 5000 values. The second exmaple consists of unsorted arrays of 10000 values and the last example consists of unsorted arrays of 50000 values.
 
 ![small regular data soring](plots/plots_of_algo_comparisons/small%20regular.png)
-![small regular data soring](plots/plots_of_algo_comparisons/middle%20regular.png)
+![middle regular data soring](plots/plots_of_algo_comparisons/middle%20regular.png)
+![large regular data soring](plots/plots_of_algo_comparisons/long%20regular.png)
+
+The diffrence is very evident between the algorithms. Moreover, some tendencies are also shown. For one its evident that algorithms with similar time complexity cluster together on the graphs. However, even within these clustering there exists a hierarchy of better performing algorithms. Apart from that its interesting to see the diffrence in the algorithm perfromance with the inputs being sorted, regulary deistbuted and reverse sorted. The next example shows just that with array inputs of 5000 values.
+
+![small sorted data soring](plots/plots_of_algo_comparisons/small%20sorted.png)
 ![small regular data soring](plots/plots_of_algo_comparisons/long%20regular.png)
+![small reverse sorted data soring](plots/plots_of_algo_comparisons/small%20revrse%20sorted.png)
 
 
-In this exmaple its fairly clear that sorting algorithms like: *Counting Sort*, *Radix Sort*, *Quick Sort(improved 2)*, *Merge Sort*, *Heap sort* and *Butcher odd even merge sort* execute quicker then the other algorithms. Its also evident that these algorithms clump together on the plot. Eventhough, this graph shows that the *Butcher odd even merge sort* performs the worst of of the five best ones its kind of more evident when we look on a larger input.
-
-![Large Regular Data Sorting](plots/plots_of_algo_comparisons/long%20regular.png)
 
 
 
