@@ -71,7 +71,7 @@ The results are quite intriguing. We observe that the graphs for sorted and reve
 
 ![middle sorted data soring](plots/plots_of_algo_comparisons/middle%20sorted.png)
 ![middle regular data soring](plots/plots_of_algo_comparisons/middle%20regular.png)
-![middle reverse sorted data soring](plots/plots_of_algo_comparisons/middle%20revrse%20sorted.png)
+![middle reverse sorted data soring](plots/plots_of_algo_comparisons/middle%20reverse%20sorted.png)
 
 With this new insight, we can draw several conclusions. First, the results for arrays with 10,000 inputs appear less chaotic compared to those with 5,000 inputs. The trend observed in the edge cases of sorted and reverse sorted arrays has persisted. In the case of reverse sorted inputs, a cluster has formed consisting of Merge Sort, Butcher Odd-Even Merge Sort, Heap Sort, Quick Sort, and Radix Sort. As noted earlier, there is a hierarchy within this cluster, with Quick Sort emerging as the best performer and Butcher Odd-Even Merge Sort as the least efficient. For the sorted input, a similar cluster of algorithms appears, with the addition of Insertion Sort and Counting Sort. To further validate these observations, the next test will be conducted using arrays of 50,000 values.
 
