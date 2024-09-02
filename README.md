@@ -55,20 +55,31 @@ In this repository, I wanted to conduct reserach into sorting algorithms and the
 
 ## <ins>Interesting Insight<ins>
 
-It is very interesting how diffrent algorithms act with diffrent inputs. Eventhough, the diffrence between the sorting algorithms is always evidenet the diffrence becomes much clearer with larger inputs. An interesting fact that I have observed is that, similar execution algorithms typicaly have the same plot in the graph. This proves the correctness of their time complexity. Below we can see three exampels. The first example consists of unsorted arrays of the size of 5000 values. The second exmaple consists of unsorted arrays of 10000 values and the last example consists of unsorted arrays of 50000 values.
+It is fascinating to observe how different algorithms behave with varying inputs. While the differences between sorting algorithms are always apparent, these distinctions become much more pronounced with larger inputs. An interesting observation is that algorithms with similar execution times typically produce similar plots on a graph, which reinforces the correctness of their time complexity analysis. Below, I present three examples: the first example involves unsorted arrays with 5,000 elements, the second with 10,000 elements, and the third with 50,000 elements.
 
 ![small regular data soring](plots/plots_of_algo_comparisons/small%20regular.png)
 ![middle regular data soring](plots/plots_of_algo_comparisons/middle%20regular.png)
 ![large regular data soring](plots/plots_of_algo_comparisons/long%20regular.png)
 
-The diffrence is very evident between the algorithms. Moreover, some tendencies are also shown. For one its evident that algorithms with similar time complexity cluster together on the graphs. However, even within these clustering there exists a hierarchy of better performing algorithms. Apart from that its interesting to see the diffrence in the algorithm perfromance with the inputs being sorted, regulary deistbuted and reverse sorted. The next example shows just that with array inputs of 5000 values.
+The differences between the algorithms are quite evident. Moreover, certain patterns emerge. For instance, algorithms with similar time complexities tend to cluster together on the graphs. However, even within these clusters, a hierarchy of better-performing algorithms is apparent. Additionally, it is intriguing to observe how algorithm performance varies depending on whether the inputs are sorted, randomly distributed, or reverse sorted. The following example illustrates this with array inputs of 5,000 values.
 
 ![small sorted data soring](plots/plots_of_algo_comparisons/small%20sorted.png)
-![small regular data soring](plots/plots_of_algo_comparisons/long%20regular.png)
+![small regular data soring](plots/plots_of_algo_comparisons/small%20regular.png)
 ![small reverse sorted data soring](plots/plots_of_algo_comparisons/small%20revrse%20sorted.png)
 
+The results are quite intriguing. We observe that the graphs for sorted and reverse sorted inputs deviate from the clustering pattern noted earlier, with some algorithms behaving differently from the expected norm. To determine if this behavior is consistent with larger inputs, the next example will apply the same tests using arrays of 10,000 values.
 
+![middle sorted data soring](plots/plots_of_algo_comparisons/middle%20sorted.png)
+![middle regular data soring](plots/plots_of_algo_comparisons/middle%20regular.png)
+![middle reverse sorted data soring](plots/plots_of_algo_comparisons/middle%20revrse%20sorted.png)
 
+With this new insight, we can draw several conclusions. First, the results for arrays with 10,000 inputs appear less chaotic compared to those with 5,000 inputs. The trend observed in the edge cases of sorted and reverse sorted arrays has persisted. In the case of reverse sorted inputs, a cluster has formed consisting of Merge Sort, Butcher Odd-Even Merge Sort, Heap Sort, Quick Sort, and Radix Sort. As noted earlier, there is a hierarchy within this cluster, with Quick Sort emerging as the best performer and Butcher Odd-Even Merge Sort as the least efficient. For the sorted input, a similar cluster of algorithms appears, with the addition of Insertion Sort and Counting Sort. To further validate these observations, the next test will be conducted using arrays of 50,000 values.
+
+![large sorted data soring](plots/plots_of_algo_comparisons/large%20sorted.png)
+![large regular data soring](plots/plots_of_algo_comparisons/large%20regular.png)
+![large reverse sorted data soring](plots/plots_of_algo_comparisons/large%20unosrted.png)
+
+This confirms that the insights and hypotheses we previously deduced are valid and consistent throughout. On average, the performance of sorting algorithms tends to align with the expectations observed in the regular examples. However, in the two edge cases where the input array is either sorted or reverse sorted, certain algorithms perform better or worse, as illustrated in the graphs.
 
 
 
